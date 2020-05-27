@@ -18,5 +18,6 @@ public typealias Font = NSFont
 
 public protocol FontProvider {
     associatedtype FontType
+    init()
     func font(ofType type: FontType) -> Font
 }

@@ -13,12 +13,16 @@ public protocol ThemeProvider {
     func theme(for appearanceType: AppearanceRegistrable.Type) -> T
 }
 
-open class ThemeProviderNode<GenericTheme: Theme>: ThemeProvider {
-    public typealias T = GenericTheme
+open class ThemeProviderNode<
+    FontsProvider: FontProvider,
+    ColorsProvider: ColorProvider>: ThemeProvider {
+    public typealias T = GenericTheme<FontsProvider,ColorsProvider>
     
-    var next: ThemeProviderNode<GenericTheme>?
+    var next: ThemeProviderNode<FontsProvider,ColorsProvider>?
   
-    public required init() {}
+    public required init() {
+        
+    }
     
     public static func createChain(from providerTypes: [ThemeProviderNode.Type]) -> ThemeProviderNode {
         var lastProvider: ThemeProviderNode?

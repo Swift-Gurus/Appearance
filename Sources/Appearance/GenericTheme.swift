@@ -16,12 +16,19 @@ public protocol Theme: ColorProvider, FontProvider {
 public final class GenericTheme<
 FontsProvider: FontProvider,
 ColorsProvider: ColorProvider>: Theme {
+    
 
     public typealias FontType = FontsProvider.FontType
     public typealias ColorType = ColorsProvider.ColorType
     
     let fontsProvider: FontsProvider
     let colorProvider: ColorsProvider
+    
+    
+    public init() {
+        self.fontsProvider = FontsProvider()
+        self.colorProvider = ColorsProvider()
+    }
     
     public init(fontsProvider: FontsProvider,
                 colorProvider: ColorsProvider) {

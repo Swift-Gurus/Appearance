@@ -17,5 +17,6 @@ public typealias Color = NSColor
 
 public protocol ColorProvider {
     associatedtype ColorType
+    init()
     func color(ofType type: ColorType) -> Color
 }
